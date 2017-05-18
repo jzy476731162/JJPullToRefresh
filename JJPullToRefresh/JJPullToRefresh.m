@@ -70,7 +70,7 @@
     [_refreshView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_refreshView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     
-    [_refreshView setFrame:CGRectMake(0, -_refreshView.frame.size.height, scrollView.frame.size.width, _refreshView.frame.size.height)];    
+    [_refreshView setFrame:CGRectMake(0, -_refreshView.frame.size.height, scrollView.frame.size.width, _refreshView.frame.size.height)];
     [_scrollView addSubview:_refreshView];
     
     [self startObservingScrollViewKeypaths];
@@ -112,19 +112,7 @@
                 }
                 
                 if ((progress == 1) && ![[self scrollView] isDragging]) {
-                    // 在startRefreshing里会更新scrollView的contentInset，这会导致contentOffset发生变化，
-                    // 所以要把更新state的语句提前
-                    [self setState:JJPullToRefreshStateRefreshing];
-                    
-                    /* 
-                     在startRefreshing里会更新contentInset的值，这会导致这个方法会被再次调用，
-                     我们只希望在scrollView的contentInset被其他对象更改时收到通知，
-                     但移除KVO Observer再重新添加的做法开销比较大，所以我们这里采取back up的方式再startRefreshing返回之后再恢复
-                     备份的contentInset的值 
-                     */
-                    UIEdgeInsets backUpInsets = [self initialScrollViewInsets];
                     [self startRefreshing];
-                    [self setInitialScrollViewInsets:backUpInsets];
                 } else {
                     [[self refreshView] animateProgress:progress];
                     [self setState:JJPullToRefreshStateTracking];
@@ -141,19 +129,31 @@
 
 - (void)startRefreshing
 {
-    [[self refreshView] animateLoading];
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        UIEdgeInsets insets = [[self scrollView] contentInset];
-        insets.top = insets.top + [self refreshView].frame.size.height;
+    if ([self state] != JJPullToRefreshStateRefreshing) {
+        [self setState:JJPullToRefreshStateRefreshing];
         
-        [[self scrollView] setContentOffset:CGPointMake(0, -insets.top)];
-        [[self scrollView] setContentInset:insets];
-    } completion:^(BOOL finished) {
-        if ([self action]) {
-            [self action]();
-        }
-    }];
+        [[self refreshView] animateLoading];
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            UIEdgeInsets insets = [[self scrollView] contentInset];
+            insets.top = insets.top + [self refreshView].frame.size.height;
+            
+            [[self scrollView] setContentOffset:CGPointMake(0, -insets.top)];
+            
+            /*
+             我们只希望在scrollView的contentInset被其他对象更改时收到通知，
+             但移除KVO Observer再重新添加的做法开销比较大，所以我们这里采取back up的方式再startRefreshing返回之后再恢复
+             备份的contentInset的值
+             */
+            UIEdgeInsets backUpInsets = [self initialScrollViewInsets];
+            [[self scrollView] setContentInset:insets];
+            [self setInitialScrollViewInsets:backUpInsets];
+        } completion:^(BOOL finished) {
+            if ([self action]) {
+                [self action]();
+            }
+        }];
+    }
 }
 
 - (void)stopRefreshing
