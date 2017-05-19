@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "JJPullToRefreshProtocol.h"
+
 typedef NS_ENUM(NSUInteger, JJPullToRefreshState) {
     JJPullToRefreshStateNormal,
     JJPullToRefreshStateTracking,
@@ -22,7 +24,9 @@ typedef NS_ENUM(NSUInteger, JJPullToRefreshState) {
 
 @end
 
-@interface JJPullToRefresh : NSObject
+@interface JJPullToRefresh : NSObject <JJPullToRefreshDelegate, JJScrollToLoadDelegate>
+
+@property (weak, nonatomic) id<JJPullToRefreshDelegate> delegate;
 
 - (instancetype)initWithCustomRefreshView:(UIView<JJPullToRefreshAnimation> *)refreshView action:(void (^)(void))action;
 

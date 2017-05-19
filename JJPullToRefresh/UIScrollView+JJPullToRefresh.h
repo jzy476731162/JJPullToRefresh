@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "JJPullToRefresh.h"
+#import "JJScrollToLoad.h"
 
 @interface UIScrollView (JJPullToRefresh)
 
@@ -18,5 +19,14 @@
 
 - (void)startRefreshing;
 - (void)stopRefreshing;
+
+@property (nonatomic) JJScrollToLoad *topScrollToLoad;
+@property (nonatomic) JJScrollToLoad *bottomScrollToLoad;
+
+- (void)addTopScrollToLoadWithAction:(void (^)(void))action;
+- (void)addBottomScrollToLoadWithAction:(void (^)(void))action;
+
+- (void)removeTopScrollToLoad;
+- (void)removeBottomScrollToLoad;
 
 @end

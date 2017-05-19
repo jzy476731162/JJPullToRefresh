@@ -20,6 +20,9 @@
 		1B4B57A81ECC3C1F004D95A3 /* UIScrollView+JJPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4B57A31ECC3C1E004D95A3 /* UIScrollView+JJPullToRefresh.m */; };
 		1B4B57AB1ECC3EDC004D95A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B4B57861ECC3B93004D95A3 /* Main.storyboard */; };
 		1B4B57AF1ECC4188004D95A3 /* JJPullToRefresh.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 1B4B57AE1ECC4188004D95A3 /* JJPullToRefresh.podspec */; };
+		1BDB68971ECE90A400B64F61 /* JJScrollToLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDB68931ECE90A400B64F61 /* JJScrollToLoad.m */; };
+		1BDB68981ECE90A400B64F61 /* JJScrollToLoadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDB68951ECE90A400B64F61 /* JJScrollToLoadView.m */; };
+		1BDB68991ECE90A400B64F61 /* JJScrollToLoadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDB68961ECE90A400B64F61 /* JJScrollToLoadView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +47,12 @@
 		1B4B57A21ECC3C1E004D95A3 /* UIScrollView+JJPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+JJPullToRefresh.h"; sourceTree = "<group>"; };
 		1B4B57A31ECC3C1E004D95A3 /* UIScrollView+JJPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+JJPullToRefresh.m"; sourceTree = "<group>"; };
 		1B4B57AE1ECC4188004D95A3 /* JJPullToRefresh.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JJPullToRefresh.podspec; sourceTree = "<group>"; };
+		1BDB68921ECE90A400B64F61 /* JJScrollToLoad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJScrollToLoad.h; sourceTree = "<group>"; };
+		1BDB68931ECE90A400B64F61 /* JJScrollToLoad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJScrollToLoad.m; sourceTree = "<group>"; };
+		1BDB68941ECE90A400B64F61 /* JJScrollToLoadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJScrollToLoadView.h; sourceTree = "<group>"; };
+		1BDB68951ECE90A400B64F61 /* JJScrollToLoadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJScrollToLoadView.m; sourceTree = "<group>"; };
+		1BDB68961ECE90A400B64F61 /* JJScrollToLoadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JJScrollToLoadView.xib; sourceTree = "<group>"; };
+		1BDB689A1ECE940700B64F61 /* JJPullToRefreshProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJPullToRefreshProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +113,12 @@
 		1B4B57991ECC3C1E004D95A3 /* JJPullToRefresh */ = {
 			isa = PBXGroup;
 			children = (
+				1BDB689A1ECE940700B64F61 /* JJPullToRefreshProtocol.h */,
+				1BDB68921ECE90A400B64F61 /* JJScrollToLoad.h */,
+				1BDB68931ECE90A400B64F61 /* JJScrollToLoad.m */,
+				1BDB68941ECE90A400B64F61 /* JJScrollToLoadView.h */,
+				1BDB68951ECE90A400B64F61 /* JJScrollToLoadView.m */,
+				1BDB68961ECE90A400B64F61 /* JJScrollToLoadView.xib */,
 				1B4B579A1ECC3C1E004D95A3 /* Assets.xcassets */,
 				1B4B579C1ECC3C1E004D95A3 /* JJPullToRefresh.h */,
 				1B4B579D1ECC3C1E004D95A3 /* JJPullToRefresh.m */,
@@ -194,6 +209,7 @@
 			files = (
 				1B4B57AB1ECC3EDC004D95A3 /* Main.storyboard in Resources */,
 				1B4B57A71ECC3C1F004D95A3 /* JJPullToRefreshView.xib in Resources */,
+				1BDB68991ECE90A400B64F61 /* JJScrollToLoadView.xib in Resources */,
 				1B4B57AF1ECC4188004D95A3 /* JJPullToRefresh.podspec in Resources */,
 				1B4B57A41ECC3C1E004D95A3 /* Assets.xcassets in Resources */,
 				1B1BC02F1ECC6E5B00E92A42 /* Assets.xcassets in Resources */,
@@ -209,9 +225,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B1BC02D1ECC6E1600E92A42 /* ViewController.m in Sources */,
+				1BDB68971ECE90A400B64F61 /* JJScrollToLoad.m in Sources */,
 				1B4B57A61ECC3C1F004D95A3 /* JJPullToRefreshView.m in Sources */,
 				1B4B57A81ECC3C1F004D95A3 /* UIScrollView+JJPullToRefresh.m in Sources */,
 				1B1BC02C1ECC6E0E00E92A42 /* AppDelegate.m in Sources */,
+				1BDB68981ECE90A400B64F61 /* JJScrollToLoadView.m in Sources */,
 				1B1BC02B1ECC6DB700E92A42 /* README.md in Sources */,
 				1B1BC02E1ECC6E3B00E92A42 /* main.m in Sources */,
 				1B4B57A51ECC3C1F004D95A3 /* JJPullToRefresh.m in Sources */,

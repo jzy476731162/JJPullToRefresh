@@ -130,6 +130,12 @@
 - (void)startRefreshing
 {
     if ([self state] != JJPullToRefreshStateRefreshing) {
+        if ([self delegate]) {
+            if (![[self delegate] shouldStartRefreshing]) {
+                return;
+            }
+        }
+        
         [self setState:JJPullToRefreshStateRefreshing];
         
         [[self refreshView] animateLoading];
@@ -165,6 +171,17 @@
     } completion:^(BOOL finished) {
         [self setState:JJPullToRefreshStateNormal];
     }];
+}
+
+#pragma mark - JJPullToRefreshDelegate, JJScrollToLoadDelegate
+- (BOOL)shouldStartLoading
+{
+    return [self state] != JJPullToRefreshStateRefreshing;
+}
+
+- (BOOL)shouldStartRefreshing
+{
+    return [self state] != JJPullToRefreshStateRefreshing;
 }
 
 @end
