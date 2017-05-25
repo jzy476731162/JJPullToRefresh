@@ -80,6 +80,8 @@
 {
     [[self refreshView] removeFromSuperview];
     [self stopObservingScrollViewKeypaths];
+    
+    [self setScrollView:nil];
 }
 
 - (void)startObservingScrollViewKeypaths
@@ -92,11 +94,6 @@
 {
     [_scrollView removeObserver:self forKeyPath:@"contentOffset" context:nil];
     [_scrollView removeObserver:self forKeyPath:@"contentInset" context:nil];
-}
-
-- (void)dealloc
-{
-    [self stopObservingScrollViewKeypaths];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context

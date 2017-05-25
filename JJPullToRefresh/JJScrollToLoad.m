@@ -44,11 +44,6 @@ typedef NS_ENUM(NSUInteger, JJScrollToLoadState) {
     return self;
 }
 
-- (void)dealloc
-{
-    [self removeObserving];
-}
-
 - (void)addToScrollView:(UIScrollView *)scrollView
 {
     _scrollView = scrollView;
@@ -87,6 +82,7 @@ typedef NS_ENUM(NSUInteger, JJScrollToLoadState) {
 {
     [self removeObserving];
     [[self loadingView] removeFromSuperview];
+    [self setScrollView:nil];
 }
 
 - (void)addObserving

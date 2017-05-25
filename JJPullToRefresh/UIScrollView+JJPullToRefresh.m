@@ -57,6 +57,18 @@
     [[self pullToRefresh] stopRefreshing];
 }
 
+#pragma mark - UIView Events
+- (void)willMoveToSuperview:(UIView *)newSuperview
+{
+    [super willMoveToSuperview:newSuperview];
+    
+    if (!newSuperview) {
+        [self removePullToRefresh];
+        [self removeTopScrollToLoad];
+        [self removeBottomScrollToLoad];
+    }
+}
+
 #pragma mark - JJScrollToLoad
 - (JJScrollToLoad *)topScrollToLoad
 {
