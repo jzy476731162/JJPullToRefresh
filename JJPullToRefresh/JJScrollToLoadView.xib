@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="jj_loading_small" translatesAutoresizingMaskIntoConstraints="NO" id="boL-A4-qCI">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="JJ_loading_small" translatesAutoresizingMaskIntoConstraints="NO" id="boL-A4-qCI">
                     <rect key="frame" x="177" y="4.5" width="21" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -29,6 +29,6 @@
         </view>
     </objects>
     <resources>
-        <image name="jj_loading_small" width="21" height="21"/>
+        <image name="JJ_loading_small" width="21" height="21"/>
     </resources>
 </document>
