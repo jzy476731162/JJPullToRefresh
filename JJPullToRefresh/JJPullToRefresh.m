@@ -78,9 +78,14 @@
 
 - (void)removeRefreshViewFromScrollView
 {
+    if ([self state] == JJPullToRefreshStateRefreshing) {
+        [[self scrollView] setContentInset:[self initialScrollViewInsets]];
+        [self setState:JJPullToRefreshStateNormal];
+        [[self refreshView] stopAnimating];
+    }
+    
     [[self refreshView] removeFromSuperview];
     [self stopObservingScrollViewKeypaths];
-    
     [self setScrollView:nil];
 }
 

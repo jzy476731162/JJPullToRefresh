@@ -80,6 +80,12 @@ typedef NS_ENUM(NSUInteger, JJScrollToLoadState) {
 
 - (void)removeFromScrollView
 {
+    if ([self state] == JJScrollToLoadStateLoading) {
+        [[self scrollView] setContentInset:[self initialScrollViewInsets]];
+        [self setState:JJScrollToLoadStateNormal];
+        [[self loadingView] endLoading];
+    }
+    
     [self removeObserving];
     [[self loadingView] removeFromSuperview];
     [self setScrollView:nil];
