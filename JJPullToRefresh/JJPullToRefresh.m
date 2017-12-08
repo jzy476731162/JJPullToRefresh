@@ -109,11 +109,11 @@
 
             if (offset <= 0) {
                 CGFloat progress = -offset / [self refreshView].frame.size.height;
-                if (progress > 1) {
-                    progress = 1;
-                }
+//                if (progress > 1) {
+//                    progress = 1;
+//                }
                 
-                if ((progress == 1) && ![[self scrollView] isDragging]) {
+                if ((progress >= 1) && ![[self scrollView] isDragging]) {
                     [self startRefreshing];
                 } else {
                     [[self refreshView] animateProgress:progress];
