@@ -66,6 +66,12 @@
     _scrollView = scrollView;
     _initialScrollViewInsets = [scrollView contentInset];
     
+    if (@available(iOS 11.0, *)) {
+        [_scrollView setContentInsetAdjustmentBehavior:UIScrollViewContentInsetAdjustmentNever];
+    } else {
+        // Fallback on earlier versions
+    }
+    
     [_scrollView setAutoresizesSubviews:YES];
     [_refreshView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_refreshView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
