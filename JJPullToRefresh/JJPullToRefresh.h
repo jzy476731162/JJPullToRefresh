@@ -29,6 +29,7 @@ typedef NS_ENUM(NSUInteger, JJPullToRefreshState) {
 @property (weak, nonatomic) id<JJPullToRefreshDelegate> delegate;
 
 - (instancetype)initWithCustomRefreshView:(UIView<JJPullToRefreshAnimation> *)refreshView action:(void (^)(void))action;
+- (instancetype)initWithCustomRefreshView:(UIView<JJPullToRefreshAnimation> *)refreshView action:(void (^)(void))action AnimationCompletion:(void(^)(void))animationCompletion;
 
 - (instancetype)initWithAction:(void (^)(void))action;
 - (instancetype)initWithAction:(void (^)(void))action AnimationCompletion:(void(^)(void))animationCompletion;

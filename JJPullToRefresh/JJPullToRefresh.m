@@ -38,6 +38,14 @@
     return self;
 }
 
+- (instancetype)initWithCustomRefreshView:(UIView<JJPullToRefreshAnimation> *)refreshView action:(void (^)(void))action AnimationCompletion:(void (^)(void))animationCompletion {
+    self = [self initWithCustomRefreshView:refreshView action:action];
+    if (self) {
+        _animationCompletion = animationCompletion;
+    }
+    return self;
+}
+
 - (instancetype)initWithAction:(void (^)(void))action
 {
     self = [super init];
