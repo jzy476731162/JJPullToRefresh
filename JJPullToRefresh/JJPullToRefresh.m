@@ -187,8 +187,8 @@
         [[self scrollView] setContentInset:[self initialScrollViewInsets]];
     } completion:^(BOOL finished) {
         [self setState:JJPullToRefreshStateNormal];
-        if (_animationCompletion) {
-            _animationCompletion();
+        if ([self animationCompletion]) {
+            [self animationCompletion]();
         }
     }];
 }
