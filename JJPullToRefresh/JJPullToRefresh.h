@@ -31,6 +31,7 @@ typedef NS_ENUM(NSUInteger, JJPullToRefreshState) {
 - (instancetype)initWithCustomRefreshView:(UIView<JJPullToRefreshAnimation> *)refreshView action:(void (^)(void))action;
 
 - (instancetype)initWithAction:(void (^)(void))action;
+- (instancetype)initWithAction:(void (^)(void))action AnimationCompletion:(void(^)(void))animationCompletion;
 
 - (void)addRefreshViewToScrollView:(UIScrollView *)scrollView;
 - (void)removeRefreshViewFromScrollView;

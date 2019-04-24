@@ -14,7 +14,9 @@
 @interface UIScrollView (JJPullToRefresh)
 
 - (void)addPullToRefreshWithAction:(void (^)(void))action;
+- (void)addPullToRefreshWithAction:(void (^)(void))action AnimationCompletion:(void (^)(void))animationCompletion;
 - (void)addPullToRefresh:(JJPullToRefresh *)pullToRefresh;
+
 - (void)removePullToRefresh;
 
 - (void)startRefreshing;

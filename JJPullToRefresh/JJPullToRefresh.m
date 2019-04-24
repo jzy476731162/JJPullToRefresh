@@ -16,6 +16,7 @@
 @property (nonatomic) JJPullToRefreshState state;
 
 @property (copy, nonatomic) void (^action)(void);
+@property (copy, nonatomic) void (^animationCompletion)(void);
 
 @property (nonatomic) UIEdgeInsets initialScrollViewInsets;
 
@@ -58,6 +59,14 @@
         _action = action;
     }
     
+    return self;
+}
+
+- (instancetype)initWithAction:(void (^)(void))action AnimationCompletion:(void (^)(void))animationCompletion {
+    self = [self initWithAction:action];
+    if (self) {
+        _animationCompletion = animationCompletion;
+    }
     return self;
 }
 
@@ -178,6 +187,9 @@
         [[self scrollView] setContentInset:[self initialScrollViewInsets]];
     } completion:^(BOOL finished) {
         [self setState:JJPullToRefreshStateNormal];
+        if (_animationCompletion) {
+            _animationCompletion();
+        }
     }];
 }
 

@@ -30,6 +30,13 @@
     [self addPullToRefresh:pullToRefresh];
 }
 
+- (void)addPullToRefreshWithAction:(void (^)(void))action AnimationCompletion:(void (^)(void))animationCompletion {
+    NSAssert(![self topScrollToLoad], @"Error: using pull to refresh and top scroll to load together");
+    
+    JJPullToRefresh *pullToRefresh = [[JJPullToRefresh alloc] initWithAction:action AnimationCompletion:animationCompletion];
+    [self addPullToRefresh:pullToRefresh];
+}
+
 - (void)addPullToRefresh:(JJPullToRefresh *)pullToRefresh
 {
     NSAssert(![self topScrollToLoad], @"Error: using pull to refresh and top scroll to load together");
