@@ -48,6 +48,12 @@
     [[self bottomScrollToLoad] setDelegate:pullToRefresh];
 }
 
+- (void)addActionTriggerOffsetY:(CGFloat)offset {
+    if ([self pullToRefresh]) {
+        [[self pullToRefresh] setActionTriggerOffsetY:offset];
+    }
+}
+
 - (void)removePullToRefresh
 {
     [[self pullToRefresh] removeRefreshViewFromScrollView];

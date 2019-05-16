@@ -17,6 +17,9 @@
 - (void)addPullToRefreshWithAction:(void (^)(void))action AnimationCompletion:(void (^)(void))animationCompletion;
 - (void)addPullToRefresh:(JJPullToRefresh *)pullToRefresh;
 
+
+- (void)addActionTriggerOffsetY:(CGFloat)offset;
+
 - (void)removePullToRefresh;
 
 - (void)startRefreshing;

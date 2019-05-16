@@ -131,7 +131,7 @@
             CGFloat offset = [[self scrollView] contentOffset].y + [self initialScrollViewInsets].top;
 
             if (offset <= 0) {
-                CGFloat progress = -offset / [self refreshView].frame.size.height;
+                CGFloat progress = -offset / ([self refreshView].frame.size.height + self.actionTriggerOffsetY);
 //                if (progress > 1) {
 //                    progress = 1;
 //                }

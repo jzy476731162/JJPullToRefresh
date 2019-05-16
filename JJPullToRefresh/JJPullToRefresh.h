@@ -27,6 +27,7 @@ typedef NS_ENUM(NSUInteger, JJPullToRefreshState) {
 @interface JJPullToRefresh : NSObject <JJPullToRefreshDelegate, JJScrollToLoadDelegate>
 
 @property (weak, nonatomic) id<JJPullToRefreshDelegate> delegate;
+@property (nonatomic, assign) CGFloat actionTriggerOffsetY;
 
 - (instancetype)initWithCustomRefreshView:(UIView<JJPullToRefreshAnimation> *)refreshView action:(void (^)(void))action;
 - (instancetype)initWithCustomRefreshView:(UIView<JJPullToRefreshAnimation> *)refreshView action:(void (^)(void))action AnimationCompletion:(void(^)(void))animationCompletion;
