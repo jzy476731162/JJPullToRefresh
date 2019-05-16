@@ -167,7 +167,7 @@
         
         [UIView animateWithDuration:0.3 animations:^{
             UIEdgeInsets insets = [[self scrollView] contentInset];
-            insets.top = insets.top + [self refreshView].frame.size.height;
+            insets.top = insets.top + [self refreshView].frame.size.height + self.actionTriggerOffsetY;
             
             [[self scrollView] setContentOffset:CGPointMake(0, -insets.top)];
             
