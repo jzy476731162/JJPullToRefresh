@@ -28,6 +28,7 @@ typedef NS_ENUM(NSUInteger, JJPullToRefreshState) {
 
 @property (weak, nonatomic) id<JJPullToRefreshDelegate> delegate;
 @property (nonatomic, assign) CGFloat actionTriggerOffsetY;
+@property (nonatomic, assign) CGFloat minimumLoadingTime;
 
 - (instancetype)initWithCustomRefreshView:(UIView<JJPullToRefreshAnimation> *)refreshView action:(void (^)(void))action;
 - (instancetype)initWithCustomRefreshView:(UIView<JJPullToRefreshAnimation> *)refreshView action:(void (^)(void))action AnimationCompletion:(void(^)(void))animationCompletion;
@@ -39,6 +40,7 @@ typedef NS_ENUM(NSUInteger, JJPullToRefreshState) {
 - (void)removeRefreshViewFromScrollView;
 
 - (void)startRefreshing;
-- (void)stopRefreshing;
+//- (void)stopRefreshing;
+- (void)stopRefreshing:(void(^)(void))completion;
 
 @end

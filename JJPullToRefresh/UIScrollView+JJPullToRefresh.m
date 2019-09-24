@@ -67,7 +67,7 @@
 
 - (void)stopRefreshing
 {
-    [[self pullToRefresh] stopRefreshing];
+    [[self pullToRefresh] stopRefreshing:nil];
 }
 
 #pragma mark - UIView Events

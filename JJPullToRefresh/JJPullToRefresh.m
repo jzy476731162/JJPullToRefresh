@@ -20,6 +20,10 @@
 
 @property (nonatomic) UIEdgeInsets initialScrollViewInsets;
 
+@property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, assign) CGFloat currentTime;
+
+@property (copy, nonatomic) void (^waitingStopCompletion)(void);
 @end
 
 @implementation JJPullToRefresh
@@ -180,10 +184,34 @@
             [[self scrollView] setContentInset:insets];
             [self setInitialScrollViewInsets:backUpInsets];
         } completion:^(BOOL finished) {
+            
+            if (self.minimumLoadingTime > 0) {
+                self.currentTime = 0;
+                [self.timer invalidate];
+                self.timer = [NSTimer timerWithTimeInterval:0.35 target:self selector:@selector(timerAction) userInfo:nil repeats:true];
+                [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+            }
+            
             if ([self action]) {
                 [self action]();
             }
         }];
+    }
+}
+
+- (void)timerAction {
+    self.currentTime += 0.35;
+    if (self.currentTime >= self.minimumLoadingTime) {
+        //等待stop信号
+        
+        [self.timer invalidate];
+        self.timer = nil;
+        
+        [self stopRefreshing];
+        
+        if (self.waitingStopCompletion) {
+            self.waitingStopCompletion();
+        }
     }
 }
 
@@ -199,6 +227,27 @@
             [self animationCompletion]();
         }
     }];
+}
+
+- (void)stopRefreshing:(void (^)(void))completion {
+    if (self.minimumLoadingTime > 0) {
+        if (self.currentTime >= self.minimumLoadingTime) {
+            [self.timer invalidate];
+            self.timer = nil;
+            
+            [self stopRefreshing];
+            if (completion) {
+                completion();
+            }
+        }else {
+            self.waitingStopCompletion = completion;
+        }
+    }else {
+        [self stopRefreshing];
+        if (completion) {
+            completion();
+        }
+    }
 }
 
 #pragma mark - JJPullToRefreshDelegate, JJScrollToLoadDelegate
