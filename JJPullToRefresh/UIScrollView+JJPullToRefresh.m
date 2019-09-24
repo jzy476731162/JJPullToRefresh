@@ -70,6 +70,10 @@
     [[self pullToRefresh] stopRefreshing:nil];
 }
 
+- (void)stopRefreshing:(void (^)(void))completion {
+    [[self pullToRefresh] stopRefreshing:completion];
+}
+
 #pragma mark - UIView Events
 - (void)willMoveToSuperview:(UIView *)newSuperview
 {

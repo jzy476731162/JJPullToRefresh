@@ -24,6 +24,7 @@
 
 - (void)startRefreshing;
 - (void)stopRefreshing;
+- (void)stopRefreshing:(void(^)(void))completion;
 
 @property (nonatomic) JJScrollToLoad *topScrollToLoad;
 @property (nonatomic) JJScrollToLoad *bottomScrollToLoad;
