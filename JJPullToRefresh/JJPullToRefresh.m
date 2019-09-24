@@ -65,9 +65,9 @@
         } else {
             podBundle = bundle;
         }
-
+        
         _refreshView = [[podBundle loadNibNamed:@"JJPullToRefreshView" owner:nil options:nil] firstObject];
-
+        
         _action = action;
     }
     
@@ -133,12 +133,12 @@
     if ([keyPath isEqualToString:@"contentOffset"]) {
         if ([self state] != JJPullToRefreshStateRefreshing) {
             CGFloat offset = [[self scrollView] contentOffset].y + [self initialScrollViewInsets].top;
-
+            
             if (offset <= 0) {
                 CGFloat progress = -offset / ([self refreshView].frame.size.height + self.actionTriggerOffsetY);
-//                if (progress > 1) {
-//                    progress = 1;
-//                }
+                //                if (progress > 1) {
+                //                    progress = 1;
+                //                }
                 
                 if ((progress >= 1) && ![[self scrollView] isDragging]) {
                     [self startRefreshing];
@@ -190,6 +190,7 @@
                 [self.timer invalidate];
                 self.timer = [NSTimer timerWithTimeInterval:0.35 target:self selector:@selector(timerAction) userInfo:nil repeats:true];
                 [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+                [self.timer fire];
             }
             
             if ([self action]) {
@@ -240,7 +241,13 @@
                 completion();
             }
         }else {
-            self.waitingStopCompletion = completion;
+            if (self.timer) {
+                self.waitingStopCompletion = completion;
+            }else {
+                if (completion) {
+                    completion();
+                }
+            }
         }
     }else {
         [self stopRefreshing];
